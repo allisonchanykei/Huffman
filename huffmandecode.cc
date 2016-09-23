@@ -7,7 +7,7 @@ using namespace std;
 
 typedef map <string,char> Cmap;
 
-string bintodec(int d){
+string bintodec(long d){
     string binary = bitset<8>(d).to_string(); //to binary
 	return binary;
 }

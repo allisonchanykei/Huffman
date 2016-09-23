@@ -34,27 +34,25 @@ node* NewNode(int freq, char c = ' ', node* left = 0, node* right = 0){
 
 vector<node*> counting(string input){
     vector<node*> count;
-    int letters[27]= {0};
+    int letters[126]= {0};
 
     for (unsigned int x = 0; x < input.length(); x++) { //see which letter is in the string
-		int c = tolower(input[x]) - 'a';
-		letters[c]++;
+		letters[int(input[x])]++ ;
     }
 
-    for (int x = 0; x < 26; x++) { //number of times of the letter appeared
-        if (letters[x]) {
-            char c = x + 'a';          
-            count.push_back(NewNode (letters[x],c));
+    for (int x = 0; x <= 125; x++) { //number of times of the letter appeared
+        if (letters[x]) {        
+            count.push_back(NewNode (letters[x],char(x)));
         }
     }
     
-	for (unsigned int x = 0; x < input.length(); x++) { //count space
-		if (input[x]==' '){
-			letters[26]++;
-			cout<<input[x]<<endl;
-		}
-    }
-	count.push_back(NewNode(letters[26],' '));
+//	for (unsigned int x = 0; x < input.length(); x++) { //count space
+//		if (input[x]==' '){
+//			letters[26]++;
+//			cout<<input[x]<<endl;
+//		}
+//    }
+//	count.push_back(NewNode(letters[126],' '));
 	return count;
 }
 
@@ -99,7 +97,7 @@ string bitstr(map <char,string> m,string input){ //return the input in a binary 
 	cout<<input<<" "<<input.length()<<endl;
 	string bitstring="";
 	for (unsigned int x = 0; x < input.length(); x++) {
-		char i =tolower(input[x]);
+		char i = input[x];
 		string ext = m.find(i)->second;
 		bitstring = bitstring + ext;
 	}
